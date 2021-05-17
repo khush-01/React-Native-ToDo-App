@@ -21,19 +21,19 @@ function App() {
 
   const removeNote = (index) => {
     var notesCpy = notes;
-    notesCpy = notesCpy.slice(0, index).concat(notesCpy.slice(index+1));
+    notesCpy = notesCpy.slice(0, index).concat(notesCpy.slice(index + 1));
     setNotes(notesCpy);
   }
 
   return (
-    <View style={{backgroundColor: '#a9f1df', height: deviceHeight}}>
+    <View style={{ backgroundColor: '#a9f1df', height: deviceHeight }}>
       <Text style={styles.heading}>To-Do App</Text>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
         <TextInput
-        onChangeText={setNote}
-        value={note}
-        placeholder='Enter the task'
-        style={styles.inputField}
+          onChangeText={setNote}
+          value={note}
+          placeholder='Enter the task'
+          style={styles.inputField}
         />
         <View>
           <TouchableOpacity onPress={addNote}>
@@ -43,18 +43,18 @@ function App() {
       </View>
       <ScrollView>
         {(notes.length === 0) ? (
-          <Text style={{fontSize: 22, marginTop: 15, textAlign: 'center'}}>
+          <Text style={{ fontSize: 22, marginTop: 15, textAlign: 'center' }}>
             No task added...
           </Text>) : (
-          <View style={{alignItems: 'center', marginTop: 10}}>
-          {notes.map((note, index) =>
-            <View key={index}>
-              <TouchableOpacity onPress={() => removeNote(index)}>
-                <Text style={styles.tasks}>{note}</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        </View>)}  
+          <View style={{ alignItems: 'center', marginTop: 10 }}>
+            {notes.map((note, index) =>
+              <View key={index}>
+                <TouchableOpacity onPress={() => removeNote(index)}>
+                  <Text style={styles.tasks}>{note}</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </View>)}
       </ScrollView>
     </View>
   )
