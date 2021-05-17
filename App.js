@@ -19,9 +19,9 @@ function App() {
     }
   }
 
-  const removeNote = () => {
+  const removeNote = (index) => {
     var notesCpy = notes;
-    notesCpy.splice(0, 1);
+    notesCpy = notesCpy.slice(0, index).concat(notesCpy.slice(index+1));
     setNotes(notesCpy);
   }
 
@@ -43,13 +43,13 @@ function App() {
       </View>
       <ScrollView>
         {(notes.length === 0) ? (
-          <Text style={{fontSize: 20, marginTop: 12, textAlign: 'center'}}>
+          <Text style={{fontSize: 22, marginTop: 15, textAlign: 'center'}}>
             No task added...
           </Text>) : (
           <View style={{alignItems: 'center', marginTop: 10}}>
           {notes.map((note, index) =>
             <View key={index}>
-              <TouchableOpacity onPress={removeNote}>
+              <TouchableOpacity onPress={() => removeNote(index)}>
                 <Text style={styles.tasks}>{note}</Text>
               </TouchableOpacity>
             </View>
@@ -88,9 +88,10 @@ const styles = StyleSheet.create({
   tasks: {
     borderRadius: 15,
     borderWidth: 2,
-    fontSize: 18,
-    marginTop: 5,
-    paddingLeft: 12,
+    fontSize: 20,
+    marginTop: 10,
+    paddingLeft: 11,
+    paddingVertical: 2,
     width: deviceWidth * 0.95,
   }
 })
